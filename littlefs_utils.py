@@ -70,6 +70,7 @@ def exec_cmd(commande):
         # process = subprocess.Popen(commande, stdout=subprocess.STDOUT, stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as e:
         print(f"Erreur lors de l'exécution de la commande : {e}")
+        messagebox.showerror("Erreur", f"Command execution error:\n{e}")
 
 # Extract filesystem from Pico board
 def extract_rocketdata_from_file():
@@ -77,11 +78,12 @@ def extract_rocketdata_from_file():
     file = filedialog.askopenfilename(initialdir="./")
     if not file:
         print("Error: No file selected !")
+        messagebox.showerror("Error", f"No file selected")
         return -1
     
     # Définir le format de la structure C
     # format_structure = '<Qiiiihhhhhhhhh'
-    format_structure = '<Qiiiihhhhhhhhhhhh'
+    format_structure = '<Qiiihhhhhhhhhh'
     byte_number = struct.calcsize(format_structure)
 
     # Lire les données binaires à partir du fichier
@@ -96,7 +98,7 @@ def extract_rocketdata_from_file():
             donnees_extraites = struct.unpack(format_structure, bin_data)
 
             # Assigner les valeurs extraites aux variables correspondantes
-            rocketSts, gnssLat, gnssLon, gnssAlt, pressure, temperature, accX, accY, accZ, gyrX, gyrY, gyrZ, sensorAdc0, sensorAdc1, a, b, c = donnees_extraites
+            rocketSts, gnssLat, gnssLon, pressure, gnssAlt, temperature, accX, accY, accZ, gyrX, gyrY, gyrZ, sensorAdc0, sensorAdc1 = donnees_extraites
 
             # Retourner les données extraites sous forme de dictionnaire
             donnees = {
