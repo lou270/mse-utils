@@ -1,6 +1,7 @@
 ###############################
 # Project       : MSE Avionics
 # Description   : LittleFS utils functions for Pico board
+# Author        : Louis Barbier
 # Licence       : CC BY-NC-SA 
 # https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
 ##############################

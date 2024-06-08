@@ -1,4 +1,4 @@
-# MSE Utils
+# LittleFS Utils
 
 Script used to extract and decode filesystem from Pico flash.
 
